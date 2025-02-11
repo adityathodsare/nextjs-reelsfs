@@ -1,7 +1,7 @@
 import mongoose, { Schema, model, models } from "mongoose";
 import bcrypt from "bcryptjs";
 
-export interface Iuser {
+export interface IUser {
   email: string;
   password: string;
   createdAt?: Date;
@@ -9,7 +9,7 @@ export interface Iuser {
   _id?: mongoose.Types.ObjectId;
 }
 
-const userSchema = new Schema<Iuser>(
+const userSchema = new Schema<IUser>(
   {
     email: {
       type: String,
@@ -33,5 +33,5 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-const user = models?.user || model("user", userSchema);
-export default user;
+const User = models?.User || model("User", userSchema);
+export default User;
