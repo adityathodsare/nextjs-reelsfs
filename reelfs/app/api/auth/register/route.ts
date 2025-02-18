@@ -5,9 +5,9 @@ import { error } from "console";
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, phoneNumber } = await request.json();
+    const { email, password } = await request.json();
 
-    if (!email || !password || !phoneNumber) {
+    if (!email || !password) {
       return NextResponse.json(
         {
           error: "Email, password and phone number are required",
@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
     await User.create({
       email,
       password,
-      phoneNumber,
     });
 
     return NextResponse.json(
